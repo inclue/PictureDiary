@@ -1,1 +1,3 @@
-PictureDiary
+# PictureDiary
+2016년 2학기 객체지향설계
+개인 프로젝트인 그림일기입니다.
