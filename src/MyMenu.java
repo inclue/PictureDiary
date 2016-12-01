@@ -1,20 +1,17 @@
 import java.awt.*;
 
 public class MyMenu extends MenuBar{
-	Menu fileMenu;
-	Menu helpMenu;
-	MenuItem newMenuItem;
-	MenuItem openMenuItem;
+	Menu newMenu;
+	Menu openMenu;
+	Menu saveMenu;
 	
-	void MyMenu(){
-		fileMenu = new Menu("File");
-		newMenuItem = new MenuItem("New");
-		openMenuItem = new MenuItem("Open");
-		fileMenu.add(newMenuItem);
-		fileMenu.add(openMenuItem);
+	MyMenu(){
+		newMenu = new Menu("New");
+		openMenu = new Menu("Open");
+		saveMenu = new Menu("Save");
 		
-		helpMenu = new Menu("Help");
-		this.add(fileMenu);
-		this.add(helpMenu);
+		this.add(newMenu);
+		this.add(openMenu);
+		this.add(saveMenu);
 	}
 }

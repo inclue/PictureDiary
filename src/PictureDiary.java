@@ -1,18 +1,20 @@
 import java.awt.*;
+
 import javax.swing.*;
 
 public class PictureDiary {
 	public static void main(String[] args){
-		JFrame Diary = new JFrame("Picture Diary - 20155600 박인서");
-		MyCanvas canvas = new MyCanvas();
+		JFrame diary = new JFrame("Picture Diary - 20155600 박인서");
+		DrawPanel canvas = new DrawPanel();
 		TextField textArea = new TextField();
-		MyMenu myMenu = new MyMenu();
+		MyMenu menu = new MyMenu();
 		
-		Diary.setMenuBar(myMenu);
-		Diary.setSize(800,500);
-		Diary.add(canvas,BorderLayout.CENTER);
-		Diary.add(textArea,BorderLayout.SOUTH);
-		Diary.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Diary.setVisible(true);
+		diary.setMenuBar(menu);
+		diary.setSize(1000,800);
+		diary.setLayout(new BorderLayout());
+		diary.add(canvas,BorderLayout.CENTER);
+		diary.add(textArea,BorderLayout.SOUTH);
+		diary.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		diary.setVisible(true);
 	}
 }
