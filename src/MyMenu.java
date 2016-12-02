@@ -1,14 +1,42 @@
 import java.awt.*;
+import java.awt.event.*;
+import java.io.IOException;
 
-public class MyMenu extends MenuBar{
-	Menu newMenu;
-	Menu openMenu;
-	Menu saveMenu;
+import javax.swing.*;
+
+public class MyMenu extends JPanel{
+	JButton newMenu;
+	JButton openMenu;
+	JButton saveMenu;
 	
-	MyMenu(){
-		newMenu = new Menu("New");
-		openMenu = new Menu("Open");
-		saveMenu = new Menu("Save");
+	MyMenu(DrawPanel dp, TextField tf){
+		newMenu = new JButton("New");
+		newMenu.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				dp.canvas.clear();
+				tf.myTextArea.setText(null);
+			}
+		});
+		openMenu = new JButton("Open");
+		openMenu.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				TextField tempTf = Serial.open();
+				if(tempTf!=null){
+					tf.myTextArea=tempTf.myTextArea;
+					dp.canvas.clear();
+					dp.canvas.repaint();
+				}
+			}
+		});
+		saveMenu = new JButton("Save");
+		saveMenu.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				Serial.save(tf);
+			}
+		});
 		
 		this.add(newMenu);
 		this.add(openMenu);
