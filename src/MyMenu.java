@@ -24,8 +24,8 @@ public class MyMenu extends JPanel{
 			public void actionPerformed(ActionEvent e){
 				TextField tempTf = Serial.open();
 				if(tempTf!=null){
-					tf.myTextArea=tempTf.myTextArea;
-					dp.canvas.clear();
+					tf.myTextArea.setText(tempTf.myTextArea.getText());
+					dp.canvas.setState();
 					dp.canvas.repaint();
 				}
 			}

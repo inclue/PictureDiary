@@ -46,7 +46,7 @@ public class MyCanvas extends Canvas{
 	
 	public void clear(){
 		Serial.clearShapeArrayList();
-		lx=ly=nx=ny=-1;
+		this.setState();
 		repaint();
 	}
 	
@@ -63,6 +63,7 @@ public class MyCanvas extends Canvas{
 			case 5 : g2.fillRect(min(sd.lx,sd.nx), min(sd.ly,sd.ny), abs(sd.nx-sd.lx), abs(sd.ny-sd.ly)); break;
 			case 6 : g2.drawOval(min(sd.lx,sd.nx), min(sd.ly,sd.ny), abs(sd.nx-sd.lx), abs(sd.ny-sd.ly)); break;
 			case 7 : g2.fillOval(min(sd.lx,sd.nx), min(sd.ly,sd.ny), abs(sd.nx-sd.lx), abs(sd.ny-sd.ly)); break;
+			default : g2.drawLine(sd.lx, sd.ly, sd.nx, sd.ny); break;
 			}
 		}
 		g2.setColor(colorState);
@@ -73,6 +74,10 @@ public class MyCanvas extends Canvas{
 		case 5 : g2.fillRect(min(lx,nx), min(ly,ny), abs(nx-lx), abs(ny-ly)); break;
 		case 6 : g2.drawOval(min(lx,nx), min(ly,ny), abs(nx-lx), abs(ny-ly)); break;
 		case 7 : g2.fillOval(min(lx,nx), min(ly,ny), abs(nx-lx), abs(ny-ly)); break;
+		default :
+		ShapeData sData = new ShapeData(lx,ly,nx,ny,strokeState,buttonState+click,colorState);
+		Serial.addShapeArrayList(sData);
+		g2.drawLine(lx,ly,nx,ny); lx=nx; ly=ny;
 		}
 	}
 	
@@ -97,4 +102,5 @@ public class MyCanvas extends Canvas{
 		}
 	}
 	public void setStrokeState(int str) {strokeState = str;}
+	public void setState(){lx=ly=nx=ny=-1;}
 }

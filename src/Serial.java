@@ -9,9 +9,11 @@ public class Serial {
 	static ArrayList<ShapeData> getShapeArrayList(){
 		return shapeArrayList;
 	}
+	
 	static void clearShapeArrayList(){
-		shapeArrayList = new ArrayList<ShapeData>();
+		shapeArrayList.clear();
 	}
+	
 	static void addShapeArrayList(ShapeData a){
 		shapeArrayList.add(a);
 	}
@@ -20,7 +22,8 @@ public class Serial {
 		try{
 			FileOutputStream fos = new FileOutputStream("saveData.grim");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-
+			
+			oos.writeObject(shapeArrayList.size());
 			for(int i=0;i<shapeArrayList.size();i++){
 				oos.writeObject(shapeArrayList.get(i));
 			}
@@ -36,11 +39,15 @@ public class Serial {
 		try {
 			   FileInputStream fis = new FileInputStream("saveData.grim");
 			   ObjectInputStream ois = new ObjectInputStream(fis);
-			   for(int i=0;i<shapeArrayList.size();i++){
-					shapeArrayList.add((ShapeData)ois.readObject());
+			   int n = (int)ois.readObject();
+			   
+			   clearShapeArrayList();
+			   for(int i=0;i<n;i++){
+				   shapeArrayList.add((ShapeData)ois.readObject());
 			   }
+			   TextField TempTf = (TextField)ois.readObject();
 			   ois.close();
-			   return (TextField)ois.readObject();
+			   return TempTf;
 		}
 		catch(Exception e) {
 			JOptionPane.showMessageDialog(null, "can't open file!");

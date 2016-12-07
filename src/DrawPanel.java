@@ -9,6 +9,7 @@ public class DrawPanel extends JPanel{
 	
 	JPanel setPanel;
 	JPanel buttonPanel;
+	JPanel clearPanel;
 	JPanel strokePanel;
 	JPanel colorPanel;
 	
@@ -16,7 +17,6 @@ public class DrawPanel extends JPanel{
 	ToolButton lineButton;
 	ToolButton rectButton;
 	ToolButton circleButton;
-	ToolButton stringButton;
 	JButton clearButton;
 	
 	JLabel Stroke;
@@ -66,6 +66,16 @@ public class DrawPanel extends JPanel{
 		});
 		buttonPanel.add(circleButton);
 		
+		pencilButton = new ToolButton("¿¬ÇÊ",8);
+		pencilButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				canvas.setButtonState(pencilButton.getSetState());
+			}
+		});
+		buttonPanel.add(pencilButton);
+		
+		clearPanel = new JPanel(new BorderLayout());
 		clearButton = new JButton("CLEAR");
 		clearButton.addActionListener(new ActionListener(){
 			@Override
@@ -73,8 +83,9 @@ public class DrawPanel extends JPanel{
 				canvas.clear();
 			}
 		});
-		buttonPanel.add(clearButton);
-		setPanel.add(buttonPanel,BorderLayout.CENTER);
+		clearPanel.add(clearButton, BorderLayout.NORTH);
+		clearPanel.add(buttonPanel,BorderLayout.CENTER);
+		setPanel.add(clearPanel,BorderLayout.CENTER);
 		
 		strokePanel = new JPanel();
 		Stroke = new JLabel("±½±â");
